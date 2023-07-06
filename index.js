@@ -3,9 +3,19 @@ const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 require("dotenv").config();
+
+
 const port = process.env.PORT;
 
 const URL = process.env.URL_DB
+
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
 mongoose
     .connect(URL)
     .then(console.log("Banco de dados conectado com sucesso"))
